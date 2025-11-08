@@ -1,0 +1,49 @@
+undo_stack = []
+redo_stack = []
+document = ""  
+
+def make_change(new_text):
+    global document
+    undo_stack.append(document)  
+    document = new_text          
+    redo_stack.clear()           
+def undo():
+    global document
+    if not undo_stack:
+        print("No element to Redo.")
+        return
+    redo_stack.append(document)  
+    document = undo_stack.pop()  
+
+def redo():
+    global document
+    if not redo_stack:
+        print("No element to rndo.")
+        return
+    undo_stack.append(document)  
+    document = redo_stack.pop()  
+
+def show():
+    print("Current Document:", document)
+
+while True:
+    print("\n1. Change text")
+    print("2. Undo")
+    print("3. Redo")
+    print("4. Show text")
+    print("5. Exit")
+    choice = input("Enter your choice: ")
+
+    if choice == '1':
+        text = input("Enter new text: ")
+        make_change(text)
+    elif choice == '2':
+        undo()
+    elif choice == '3':
+        redo()
+    elif choice == '4':
+        show()
+    elif choice == '5':
+        break
+    else:
+        print("Invalide choice!")

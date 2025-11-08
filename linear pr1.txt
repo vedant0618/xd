@@ -1,0 +1,54 @@
+emp_id=[]
+n=int(input("Enter the size of the array:"))
+for i in range(n):
+  emp=int(input("Enter employee id:"))
+  emp_id.append(emp)
+
+def linear_search(emp_id,target):
+ for i in range(0,len(emp_id)):
+    if(emp_id[i]==target):
+       return i;
+       break;
+ return-1
+ 
+def binary_search(emp_id,key):
+ low=0
+ high=n-1
+ while low<=high:
+    mid=(low+high)//2
+    if emp_id[mid]==key:
+       return mid;
+    if emp_id[mid]<key:
+       low=mid+1
+    else:
+       high=mid-1
+ return-1
+
+def menu():
+    print("1.linear:")
+    print("2.binary:")
+    print("3.Exit:")
+
+while True:
+   menu()
+   choice=input("Enter your choice(1-3):")
+   if choice=='1':
+    key=int(input("Enter id to be search:"))
+    result=linear_search(emp_id,key)
+    if result!=-1:
+     print("Element found at location",result)
+    else:
+     print("Employee Id is not found")
+   elif choice=='2':
+     sorted_id=sorted(emp_id)
+     key=int(input("Enter id to be search:"))
+     result=binary_search(sorted_id,key)
+     if result!=-1:
+      print("Element found",result)
+     else:
+      print("Element not found",result)
+   elif choice=='3':
+      print("Exit")
+      break;
+   else:
+      print("Invalid Choice") 

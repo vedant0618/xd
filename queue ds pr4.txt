@@ -1,0 +1,47 @@
+from collections import deque;
+class Q_deque:
+    def __init__(self):
+        self.q = deque()
+    def add_event(self,event):
+        self.q.append(event)
+        print(f"Event '{event}' added")
+    def process_event(self):
+        if self.q:
+            event = self.q.popleft()
+            print(f"Event is processed {event}")
+        else :
+            print("Queue is empty")  
+    def cancel_event(self,event):
+        if event in self.q:
+            self.q.remove(event)
+            print(f"Event '{event}' is remove")
+            print(self.q)
+        else:
+            print(f"Event '{event}' is canceled")
+    def display(self):
+        print(f"Event is display'{self.q}'")
+    def menu(self):
+        while True:
+            print("===menu===")
+            print("1. added event:")
+            print("2. process event:")
+            print("3. cancel event:")
+            print("4. display event:")
+            print("5. Exist:")
+            choice = int(input("Enter a number:"))
+            if (choice == 1):
+                event = input("Enter a event:")
+                self.add_event(event)
+            elif (choice == 2):
+                self.process_event()
+            elif (choice == 3):
+                event=input("enter event to be delete:-")
+                self.cancel_event(event)
+            elif (choice == 4):
+                self.display()
+            elif (choice ==5):
+                print("Exit")
+                break;
+
+obj = Q_deque() 
+obj.menu() 
